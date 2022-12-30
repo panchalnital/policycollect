@@ -1,0 +1,89 @@
+<?php
+$title = 'Add New Policy';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the title element:
+$first_name = $form->get('first_name');
+$first_name->setAttribute('class', 'form-control');
+$first_name->setAttribute('placeholder', 'First Name');
+
+// This provides a default CSS class and placeholder text for the artist element:
+$last_name = $form->get('last_name');
+$last_name->setAttribute('class', 'form-control');
+$last_name->setAttribute('placeholder', 'Last Name');
+
+
+// This provides a default CSS class and placeholder text for the artist element:
+$policy_number = $form->get('policy_number');
+$policy_number->setAttribute('class', 'form-control');
+$policy_number->setAttribute('placeholder', 'Policy Number');
+
+$start_date = $form->get('start_date');
+$start_date->setAttribute('class', 'form-control');
+$start_date->setAttribute('placeholder', 'Start Date');
+
+
+$end_date = $form->get('end_date');
+$end_date->setAttribute('class', 'form-control');
+$end_date->setAttribute('placeholder', 'End Date');
+
+
+$premium = $form->get('premium');
+$premium->setAttribute('class', 'form-control');
+$premium->setAttribute('placeholder', 'Premium');
+
+// This provides CSS classes for the submit button:
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('policy', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<?php 
+	  // Wrap the elements in divs marked as form groups, and render the
+      // label, element, and errors separately within 
+?>
+<div class="form-group">
+    <?= $this->formLabel($first_name) ?>
+    <?= $this->formElement($first_name) ?>
+    <?= $this->formElementErrors()->render($first_name, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($last_name) ?>
+    <?= $this->formElement($last_name) ?>
+    <?= $this->formElementErrors()->render($last_name, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($policy_number) ?>
+    <?= $this->formElement($policy_number) ?>
+    <?= $this->formElementErrors()->render($policy_number, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($start_date) ?>
+    <?= $this->formElement($start_date) ?>
+    <?= $this->formElementErrors()->render($start_date, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($end_date) ?>
+    <?= $this->formElement($end_date) ?>
+    <?= $this->formElementErrors()->render($end_date, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($premium) ?>
+    <?= $this->formElement($premium) ?>
+    <?= $this->formElementErrors()->render($premium, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

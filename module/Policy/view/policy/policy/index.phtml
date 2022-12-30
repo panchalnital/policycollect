@@ -1,0 +1,35 @@
+<?php
+
+$title = 'My policy';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('policy', ['action' => 'add']) ?>">Add Policy</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>first name</th>
+    <th>last name</th>
+    <th>policy cnumber</th>
+    <th>start date</th>
+    <th>end date</th>
+    <th>premium</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($policys as $policy) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($policy->first_name) ?></td>
+        <td><?= $this->escapeHtml($policy->last_name) ?></td>
+        <td><?= $this->escapeHtml($policy->policy_number) ?></td>
+        <td><?= $this->escapeHtml($policy->start_date) ?></td>
+        <td><?= $this->escapeHtml($policy->end_date) ?></td>
+        <td><?= $this->escapeHtml($policy->premium) ?></td>
+        <td>
+            <a href="<?= $this->url('policy', ['action' => 'edit', 'id' => $policy->id]) ?>">Edit</a>
+            <a href="<?= $this->url('policy', ['action' => 'delete', 'id' => $policy->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
