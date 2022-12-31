@@ -33,12 +33,13 @@ class PolicyTable
     }
     public function savePolicy(Policy $policy)
     {
+        //$my_date = date("Y-m-d H:i:s");
         $data = [
              'first_name'=> $policy->first_name,
              'last_name'=> $policy->last_name,
              'policy_number'=> $policy->policy_number,
-             'start_date' => $policy->start_date,
-             'end_date'=> $policy->end_date,
+             'start_date' => date('Y-m-d H:i:s', strtotime($policy->start_date)),
+             'end_date'=> date('Y-m-d H:i:s', strtotime($policy->end_date)),
              'premium'=> $policy->premium,
         ];
 

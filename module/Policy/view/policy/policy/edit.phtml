@@ -5,6 +5,7 @@ $title = 'Edit Policy';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
+<div class="col-md-6">
 <?php
 // This provides a default CSS class and placeholder text for the title element:
     $first_name = $form->get('first_name');
@@ -23,12 +24,12 @@ $this->headTitle($title);
     $policy_number->setAttribute('placeholder', 'Policy Number');
     
     $start_date = $form->get('start_date');
-    $start_date->setAttribute('class', 'form-control');
+    $start_date->setAttribute('class', 'form-control datepicker_start_date');
     $start_date->setAttribute('placeholder', 'Start Date');
     
     
     $end_date = $form->get('end_date');
-    $end_date->setAttribute('class', 'form-control');
+    $end_date->setAttribute('class', 'form-control datepicker_end_date');
     $end_date->setAttribute('placeholder', 'End Date');
     
     
@@ -50,40 +51,61 @@ echo $this->form()->openTag($form);
 <div class="form-group">
     <?= $this->formLabel($first_name) ?>
     <?= $this->formElement($first_name) ?>
-    <?= $this->formElementErrors()->render($first_name, ['class' => 'help-block']) ?>
+    <?= $this->formElementErrors()->render($first_name, ['class' => 'help-block text-danger']) ?>
 </div>
 
 <div class="form-group">
     <?= $this->formLabel($last_name) ?>
     <?= $this->formElement($last_name) ?>
-    <?= $this->formElementErrors()->render($last_name, ['class' => 'help-block']) ?>
+    <?= $this->formElementErrors()->render($last_name, ['class' => 'help-block text-danger']) ?>
 </div>
 
 <div class="form-group">
     <?= $this->formLabel($policy_number) ?>
     <?= $this->formElement($policy_number) ?>
-    <?= $this->formElementErrors()->render($policy_number, ['class' => 'help-block']) ?>
+    <?= $this->formElementErrors()->render($policy_number, ['class' => 'help-block text-danger']) ?>
 </div>
 
 <div class="form-group">
     <?= $this->formLabel($start_date) ?>
     <?= $this->formElement($start_date) ?>
-    <?= $this->formElementErrors()->render($start_date, ['class' => 'help-block']) ?>
+    <?= $this->formElementErrors()->render($start_date, ['class' => 'help-block text-danger']) ?>
 </div>
 
 <div class="form-group">
     <?= $this->formLabel($end_date) ?>
     <?= $this->formElement($end_date) ?>
-    <?= $this->formElementErrors()->render($end_date, ['class' => 'help-block']) ?>
+    <?= $this->formElementErrors()->render($end_date, ['class' => 'help-block text-danger']) ?>
 </div>
 
 <div class="form-group">
     <?= $this->formLabel($premium) ?>
     <?= $this->formElement($premium) ?>
-    <?= $this->formElementErrors()->render($premium, ['class' => 'help-block']) ?>
+    <?= $this->formElementErrors()->render($premium, ['class' => 'help-block text-danger']) ?>
 </div>
 
 <?php
 echo $this->formSubmit($submit);
 echo $this->formHidden($form->get('id'));
 echo $this->form()->closeTag();
+?>
+</div>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+$( function() {
+    var $j = jQuery.noConflict();
+    $(".datepicker_start_date").datepicker({
+        onSelect: function() { 
+            var dateObject = $(this).datepicker('getDate'); 
+        }
+    });
+    $(".datepicker_end_date").datepicker({
+        onSelect: function() { 
+            var dateObject = $(this).datepicker('getDate'); 
+        }
+    });
+} );
+</script>
